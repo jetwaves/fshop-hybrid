@@ -1,0 +1,9 @@
+<ion-view view-title="{{product.product_name}}">
+  <ion-content class="padding">
+    <img ng-src="{{product.pic_url}}" style="width: 64px; height: 64px">
+    <h3>{{product.product_name}}</h3>
+    <span>{{product.spec}} {{product.unit_quantity}}</span>
+    <p><label for="">价格：￥</label>{{product.price}}</p>
+    <p>{{product.sup_info}}</p>
+  </ion-content>
+</ion-view>
