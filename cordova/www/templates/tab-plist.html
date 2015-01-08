@@ -1,18 +1,26 @@
 <ion-view view-title="Products">
     <ion-content>
-    <ion-refresher
-        pulling-text="下拉 更新列表..."
-        on-refresh="onSwipeDown()">
-    </ion-refresher>
-        <ion-list show-delete="false" can-swipe="listCanSwipe" on-swipe-down="onSwipeDown()">
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" href="#/tab/product/{{product._id}}">
+        <ion-refresher
+            pulling-text="下拉 更新列表..."
+            on-refresh="onSwipeDown()">
+        </ion-refresher>
+        <ion-list show-delete="false" can-swipe="listCanSwipe">
+            <ion-item class="item-divider item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" href="#/tab/product/{{product._id}}">
                 <img ng-src="{{product.pic_url}}">
-                <h2>{{product.product_name}}</h2>  
-                <span>{{product.spec}} {{product.unit_quantity}}</span>
-                <p><label for="">价格：￥</label>{{product.price}}</p>
-                <p>{{product.sup_info}}</p>
-                <!-- <p><img ng-src="{{product.pic_url}}"></p> -->
-                <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+                <div class="row">
+                    <div class="col col-67">
+                        <h2>{{product.product_name}}</h2>  
+                        <span>{{product.spec}} {{product.unit_quantity}}</span>
+                        <p><label for="">价格：￥</label>{{product.price}}</p>
+                        <p>{{product.sup_info}}</p>
+                    </div>
+                    <div class="col col-33">
+                        <div class="button-bar">
+                            <a href="" on-touch="updateCart('{{product._id}}', '1')" class="button ion-plus-circled" style="font-size:2.5em;color:green;border:none"></a>
+                            <a href="" on-touch="updateCart('{{product._id}}', '-1')"  class="button ion-minus-circled" style="font-size:2.5em;color:green;border:none"></a>
+                        </div>
+                    </div>
+                </div>
             </ion-item>
         </ion-list>
     </ion-content>
