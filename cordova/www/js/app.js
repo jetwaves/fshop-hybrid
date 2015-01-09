@@ -77,17 +77,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
-    .state('tab.account', {
-        url: '/account',
+    .state('tab.ucenter', {
+        url: '/ucenter',
         views: {
-            'tab-account': {
-                templateUrl: 'templates/tab-account.html',
-                controller: 'AccountCtrl'
+            'tab-ucenter': {
+                templateUrl: 'templates/tab-ucenter.html',
+                controller: 'UcenterCtrl'
             }
         }
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/plist');
+    $urlRouterProvider.otherwise('/tab/ucenter');
 
 });
