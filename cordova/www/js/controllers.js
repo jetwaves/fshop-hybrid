@@ -135,12 +135,11 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('UcenterCtrl', function($scope) {
+.controller('UcenterCtrl', function($scope ) {
+    $scope.loadClientInfo = function(clientId){
+        //$scope.clientInfo = Clients.info(clientId);
+    }
+    
+    //$scope.loadClientInfo('11111111');
 
-
-
-})
-
-
-
-;
+});
