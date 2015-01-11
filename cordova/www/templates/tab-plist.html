@@ -1,27 +1,51 @@
 <ion-view view-title="Products">
-    <ion-content>
-        <ion-refresher
-            pulling-text="下拉 更新列表..."
-            on-refresh="onSwipeDown()">
-        </ion-refresher>
-        <ion-list show-delete="false" can-swipe="listCanSwipe">
-            <ion-item class="item-divider item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" href="#/tab/product/{{product._id}}">
-                <img ng-src="{{product.pic_url}}">
-                <div class="row">
-                    <div class="col col-67">
-                        <h2>{{product.product_name}}</h2>  
-                        <span>{{product.spec}} {{product.unit_quantity}}</span>
-                        <p><label for="">价格：￥</label>{{product.price}}</p>
-                        <p>{{product.sup_info}}</p>
-                    </div>
-                    <div class="col col-33">
-                        <div class="button-bar">
-                            <a href="" on-touch="updateCart('{{product._id}}', '1')" class="button ion-plus-circled" style="font-size:2.5em;color:green;border:none"></a>
-                            <a href="" on-touch="updateCart('{{product._id}}', '-1')"  class="button ion-minus-circled" style="font-size:2.5em;color:green;border:none"></a>
-                        </div>
-                    </div>
+    <ion-side-menus enable-menu-with-back-views="true">
+        <!-- Center content -->
+        <ion-side-menu-content ng-controller="PlistCtrl">
+            <ion-header-bar class="bar-positive" align-title="left">
+                <div class="buttons">
+                    <button class="button" menu-toggle="left">分类筛选</button>
                 </div>
-            </ion-item>
-        </ion-list>
-    </ion-content>
+                <h1 class="title"></h1>
+            </ion-header-bar>
+            <ion-content>
+                <ion-refresher
+                    pulling-text="下拉 更新列表..."
+                    on-refresh="onSwipeDown()">
+                </ion-refresher>
+                <ion-list show-delete="false" can-swipe="listCanSwipe">
+                    <ion-item class="item-divider item-avatar item-icon-right" ng-repeat="product in products | filter:plist_filter_condition" type="item-text-wrap" href="#/tab/product/{{product._id}}">
+                        <img ng-src="{{product.pic_url}}">
+                        <div class="row">
+                            <div class="col col-67">
+                                <h2>{{product.product_name}}</h2>  
+                                <span>{{product.spec}} {{product.unit_quantity}}</span>
+                                <p><label for="">价格：￥</label>{{product.price}}</p>
+                                <p>{{product.sup_info}}</p>
+                            </div>
+                            <div class="col col-33">
+                                <div class="button-bar">
+                                    <a href="" on-touch="updateCart('{{product._id}}', '1')" class="button ion-plus-circled" style="font-size:2.5em;color:green;border:none"></a>
+                                    <a href="" on-touch="updateCart('{{product._id}}', '-1')"  class="button ion-minus-circled" style="font-size:2.5em;color:green;border:none"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu-content>
+
+        <!-- Left menu -->
+        <ion-side-menu side="left">
+            <ion-list>
+                <ion-item>
+                    <div on-touch="setFilter(0)">全部分类</div>
+                </ion-item>
+                <ion-item ng-repeat="cat in categories">
+                    <div on-touch="setFilter({{cat._id}})">{{cat.name}}</div>
+                </ion-item>
+            </ion-list>
+        </ion-side-menu>
+
+    </ion-side-menus>
 </ion-view>

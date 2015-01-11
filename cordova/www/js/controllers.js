@@ -39,9 +39,27 @@ function logComplexeArray(arr){
 
 angular.module('starter.controllers', [])
 
-.controller('PlistCtrl', function($scope,$rootScope, $stateParams, Products, $http) {
+.controller('PlistCtrl', function($scope,$rootScope, $stateParams, 
+                                Products, Categories, $http, $ionicSideMenuDelegate) {
     $rootScope.cartIdList = [];
     $rootScope.subTotal = 0;
+    $scope.toggleLeft = function() {
+        console.log('controllers.js     PlistCtrl   toggleLeft   ');
+        console.dir($ionicSideMenuDelegate);
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+    $scope.setFilter = function(plist_filter_condition){
+        if (eval(plist_filter_condition) == 0) {
+            $scope.plist_filter_condition = "";
+        } else{
+            $scope.plist_filter_condition = plist_filter_condition;
+        };
+        $ionicSideMenuDelegate.toggleLeft(false);
+    }
+    // $scope.plistSelected = function(){
+    //     console.log('controllers.js     PlistCtrl   plistSelected    ');
+    //     $ionicSideMenuDelegate.toggleLeft(false);
+    // }
     $scope.cartSelected = function(){
         // $scope.$apply();
         $scope.$broadcast('cart-selected', $rootScope.cartIdList);
@@ -50,6 +68,7 @@ angular.module('starter.controllers', [])
     $scope.reload = function(){
         if (DEBUG_MODE) {
             $rootScope.products = Products.all();
+            $rootScope.categories = Categories.all();
         } else {
             $http.get( remoteServerURL + '/products/listData').
                 success(function(data, status, headers, config) {

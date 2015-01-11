@@ -5,7 +5,7 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-balanced tabs-icon-top" ng-controller="PlistCtrl">
 	<!-- 商品列表 Tab -->
-	<ion-tab title="商品列表" icon-off="ion-social-apple-outline" icon-on="ion-social-apple" href="#/tab/plist">
+	<ion-tab title="商品列表" icon-off="ion-social-apple-outline" icon-on="ion-social-apple" href="#/tab/plist" on-select="plistSelected()">
 		<ion-nav-view name="tab-plist"></ion-nav-view>
 	</ion-tab>
 	<!-- 购物车 Tab -->
