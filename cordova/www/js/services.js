@@ -105,7 +105,7 @@ angular.module('starter.services', [])
     }
 })
 
-.factory('Client', ['$scope', function($scope) {
+.factory('Clients', function( ) {
     var clientInfo = {
                         _id: "54af8e05e3d9c7d823581c4f",
                         user_name: "18676780441",
@@ -140,7 +140,7 @@ angular.module('starter.services', [])
             }
         }
     }
-}])
+})
 
 
 
