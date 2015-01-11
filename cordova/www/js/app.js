@@ -85,7 +85,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 controller: 'UcenterCtrl'
             }
         }
-    });
+    })
+
+    .state('tab.order-list', {
+        url: '/order_list',
+        views: {
+            'tab-order-list': {
+                templateUrl: 'templates/order-list.html',
+                controller: 'OrdersCtrl'
+            }
+        }
+    })
+
+    ;
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/ucenter');
