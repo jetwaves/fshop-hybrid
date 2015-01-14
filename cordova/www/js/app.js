@@ -78,12 +78,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-    .state('tab.order-list', {
-        url: '/order_list',
+    .state('tab.checkout', {
+        url: '/checkout',
         views: {
-            'tab-order-list': {
-                templateUrl: 'templates/order-list.html',
-                controller: 'OrdersCtrl'
+            'tab-cart': {
+                templateUrl: 'templates/checkout.html',
+                controller: 'CheckoutCtrl'
             }
         }
     })
@@ -91,7 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     ;
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/plist');
+    $urlRouterProvider.otherwise('/tab/checkout');
 }])
 
 

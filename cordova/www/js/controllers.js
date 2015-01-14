@@ -40,6 +40,7 @@ angular.module('starter.controllers', [])
 
 .controller('PlistCtrl', ['$scope', '$rootScope', '$stateParams', 'Products', 'Categories', '$http', '$ionicSideMenuDelegate', 
             function($scope,$rootScope, $stateParams, Products, Categories, $http, $ionicSideMenuDelegate){
+
     $rootScope.cartIdList = [];
     $rootScope.subTotal = 0;
     $scope.toggleLeft = function() {
@@ -157,11 +158,35 @@ angular.module('starter.controllers', [])
     });
 }])
 
-.controller('UcenterCtrl', ['$scope', 'Clients', function($scope, Clients){
+.controller('UcenterCtrl', ['$scope','$rootScope', 'Clients', function($scope, $rootScope, Clients){
+    // 判断是否已经登录 
+    if ($rootScope.isLoggedIn != true) {
+        $rootScope.isLoggedIn = false
+    };
+    $scope.login = function(){
+        console.log('   controllers.js      UcenterCtrl     login ');
+        $rootScope.isLoggedIn = true;
+    }
+    $scope.logout = function(){
+        console.log('   controllers.js      UcenterCtrl     logout ');
+        $rootScope.isLoggedIn = false;
+    }
+
     $scope.loadClientInfo = function(clientId){
-        $scope.clientInfo = Clients.info(clientId);
+        if ($rootScope.isLoggedIn) {
+
+        } else{
+            $scope.clientInfo = Clients.info(clientId);
+        };
     }
     $scope.loadClientInfo('11111111');
+}])
+
+
+.controller('CheckoutCtrl', ['$scope', '$http' , 
+                    function($scope, $http){
+    console.log('   controller.js       CheckoutCtrl       000 ');
+    
 }])
 
 
