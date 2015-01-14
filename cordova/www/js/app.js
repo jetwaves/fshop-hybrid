@@ -7,6 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
+
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider',function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     var iosConfig = {
 
     };
@@ -33,12 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $ionicConfigProvider.setPlatformConfig('android', androidConfig);
     $ionicConfigProvider.setPlatformConfig('ios', iosConfig);
 
-    // Ionic uses AngularUI Router which uses the concept of states
-    // Learn more here: https://github.com/angular-ui/ui-router
-    // Set up the various states which the app can be in.
-    // Each state's controller can be found in controllers.js
     $stateProvider
-
     // setup an abstract state for the tabs directive
     .state('tab', {
         url: "/tab",
@@ -46,7 +42,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         templateUrl: "templates/tabs.html",
         controller:'PlistCtrl'
     })
-
     // Each tab has its own nav history stack:
     .state('tab.plist', {
         url: '/plist',
@@ -56,7 +51,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-
     // Each tab has its own nav history stack:
     .state('tab.product-detail', {
         url: '/product/:productId',
@@ -67,7 +61,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-
     .state('tab.cart', {
         url: '/cart',
         views: {
@@ -76,7 +69,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-
     .state('tab.ucenter', {
         url: '/ucenter',
         views: {
@@ -86,7 +78,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-
     .state('tab.order-list', {
         url: '/order_list',
         views: {
@@ -97,9 +88,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
-    ;
 
+    ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/plist');
+}])
 
-});
+
+;

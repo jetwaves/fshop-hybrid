@@ -3,8 +3,7 @@ var remoteServerURL = "http://192.168.1.212:3000";
 
 angular.module('starter.services', [])
 
-.factory('Products', function($http) {
-
+.factory('Products', ['$http', function($http){
     // 测试数据
     var products = [{
         _id: "54a7dd5acb1853042d935448",
@@ -111,9 +110,9 @@ angular.module('starter.services', [])
             return null;
         }
     }
-})
+}])
 
-.factory('Clients', function( ) {
+.factory('Clients', ['$http', function($http){
     var clientInfo = {
                         _id: "54af8e05e3d9c7d823581c4f",
                         user_name: "18676780441",
@@ -148,9 +147,10 @@ angular.module('starter.services', [])
             }
         }
     }
-})
+}])
 
-.factory('Categories', function(){
+
+.factory('Categories', ['$http', function($http){
     var catList = [ {
                         _id     :   "1",
                         name    :   "苹果",
@@ -194,7 +194,7 @@ angular.module('starter.services', [])
             }
         }
     };
-})
+}])
 
 
 ;

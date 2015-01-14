@@ -36,11 +36,10 @@ function logComplexeArray(arr){
     }
 }
 
-
 angular.module('starter.controllers', [])
 
-.controller('PlistCtrl', function($scope,$rootScope, $stateParams, 
-                                Products, Categories, $http, $ionicSideMenuDelegate) {
+.controller('PlistCtrl', ['$scope', '$rootScope', '$stateParams', 'Products', 'Categories', '$http', '$ionicSideMenuDelegate', 
+            function($scope,$rootScope, $stateParams, Products, Categories, $http, $ionicSideMenuDelegate){
     $rootScope.cartIdList = [];
     $rootScope.subTotal = 0;
     $scope.toggleLeft = function() {
@@ -129,13 +128,17 @@ angular.module('starter.controllers', [])
     }
     // console.log(' PlistCtrl     cartSize 02= ' + $rootScope.cartSize);
     $scope.reload();
-})
+    
+}])
 
-.controller('ProductCtrl', function($scope, $stateParams, Products) {
+.controller('ProductCtrl', ['$scope', '$stateParams', 'Products', 
+                    function($scope, $stateParams, Products){
     $scope.product = Products.get($stateParams.productId);
-})
+}])
 
-.controller('CartCtrl', function($scope, $rootScope, $stateParams) {
+
+.controller('CartCtrl', ['$scope', '$rootScope', '$stateParams', 
+                    function($scope, $rootScope, $stateParams){
     $scope.$on('cart-selected', function(event ,data){
         console.log('   controllers.js      CartCtrl     cart-selected    $rootScope.cartIdList = ');  console.dir($rootScope.cartIdList);
         var clist = $rootScope.cartIdList;
@@ -152,13 +155,14 @@ angular.module('starter.controllers', [])
         console.log('   controllers.js      CartCtrl     cart-selected    res = ');  console.dir(res);
         $scope.cartList = res;
     });
-})
+}])
 
-.controller('UcenterCtrl', function($scope, Clients ) {
+.controller('UcenterCtrl', ['$scope', 'Clients', function($scope, Clients){
     $scope.loadClientInfo = function(clientId){
         $scope.clientInfo = Clients.info(clientId);
     }
-    
     $scope.loadClientInfo('11111111');
+}])
 
-});
+
+
