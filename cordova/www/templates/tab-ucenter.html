@@ -4,7 +4,7 @@
         <h1 class="title block">个人中心</h1>
         <div class="buttons" ng-switch="isLoggedIn">
             <button class="button icon-left ion-log-out" ng-switch-when="true" on-touch="logout()">退出</button>
-            <button class="button icon-left ion-log-in" ng-switch-when="false" on-touch="login()">登录</button>
+            <a href="#/tab/login" class="button icon-left ion-log-in" ng-switch-when="false" >登录</a>
         </div>
     </ion-header-bar>
     <ion-content>

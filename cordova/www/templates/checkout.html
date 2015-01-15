@@ -66,7 +66,9 @@
         <h1 class="title">总额：￥ {{subTotal}}
         </h1>
         <div class="buttons" ng-click="doSomething()">
-            <button class="button button-assertive">提交订单</button>
+            <a href="#/tab/submit" class="button button-assertive" on-touch="submit()">
+                    提交订单
+            </a>
         </div>
     </ion-footer-bar>
 </ion-view>

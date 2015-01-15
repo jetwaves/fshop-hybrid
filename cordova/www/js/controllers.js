@@ -92,6 +92,15 @@ angular.module('starter.controllers', [])
         console.log(' controller.js     PlistCtrl   onSwipeDown ');
         $scope.reload();
     }
+
+    // 订单提交
+    $scope.submit = function(){
+        console.log('   controllers.js      PlistCtrl     submit before del');
+        $rootScope.cartIdList = "";
+        $rootScope.cartSize = "";
+        $scope.$broadcast('cart-refresh', $rootScope.cartIdList);   // 提示刷新购物车
+    }
+
     // 购物车数量变化处理 
     //     @param       pid    ,    商品id，用于识别和对应购物车里面的对象
     //     @param       changeNumber, 变化数来那个，用于记录加减  +1 or -1
@@ -164,6 +173,7 @@ angular.module('starter.controllers', [])
         console.log('   controllers.js      CartCtrl     cart-selected    $rootScope.cartIdList = ');  console.dir($rootScope.cartIdList);
         $scope.refresh();
     });
+
 }])
 
 .controller('UcenterCtrl', ['$scope','$rootScope', 'Clients', '$window', 
