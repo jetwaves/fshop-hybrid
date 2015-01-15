@@ -43,6 +43,7 @@ angular.module('starter.controllers', [])
 
     $rootScope.cartIdList = [];
     $rootScope.subTotal = 0;
+    $rootScope.cartHasProducts = false;
     $scope.toggleLeft = function() {
         console.log('controllers.js     PlistCtrl   toggleLeft   ');
         console.dir($ionicSideMenuDelegate);
@@ -94,7 +95,7 @@ angular.module('starter.controllers', [])
     // 购物车数量变化处理 
     //     @param       pid    ,    商品id，用于识别和对应购物车里面的对象
     //     @param       changeNumber, 变化数来那个，用于记录加减  +1 or -1
-    //          cartIdList 数据结构：    [ { id : number },{},{}, ...     ]
+    //          cartIdList 数据结构：    { id1: number1, id2: number2, id3: number3 .... }
     $scope.updateCart = function( pid, changeNumber){
         var cartIdList = $rootScope.cartIdList;
         if (eval(changeNumber) == 1) {      // 加一的情况
@@ -106,30 +107,36 @@ angular.module('starter.controllers', [])
         } else {                            // 减一的情况
             if ( cartIdList[pid] == null || cartIdList[pid] == undefined ) {
                 cartIdList[pid] = 0;
+                // cartIdList.splice(pid,1);
             } else {
                 cartIdList[pid] = eval(cartIdList[pid]) + eval(changeNumber);
                 if (eval(cartIdList[pid]) < 0) {
                     cartIdList[pid] = 0;
+                    // cartIdList.splice(pid,1);
                 } 
             }
         };
-        // 计算总价
+        var cartRes = new Array();
+        // 计算总价，数量，并且把数量为0的商品从结果列表里面删掉
         var subTotal = 0;
         for( item in cartIdList){
             var product = $rootScope.idProductMapping[item];
             product['number'] = cartIdList[item];
+            if (product['number'] > 0 ) {
+                cartRes[item] = product['number'];
+            };
             var pSum = product['number'] * product['price'];
             subTotal = subTotal + pSum;
         }
         $rootScope.subTotal = subTotal;
-        $rootScope.cartIdList = cartIdList;
-        cartSize = countCartSize(cartIdList);
+        $rootScope.cartIdList = cartRes;
         $rootScope.cartSize = cartSize;
-        console.log(' PlistCtrl     updateCart      cartIdList = ');  console.dir(cartIdList);
+        $rootScope.cartHasProducts = (cartSize>0)?true:false;
+        console.log(' PlistCtrl     updateCart      cartRes = ');  console.dir(cartRes);
+        $scope.$broadcast('cart-refresh', $rootScope.cartIdList);   // 提示刷新购物车
     }
     // console.log(' PlistCtrl     cartSize 02= ' + $rootScope.cartSize);
     $scope.reload();
-    
 }])
 
 .controller('ProductCtrl', ['$scope', '$stateParams', 'Products', 
@@ -140,21 +147,22 @@ angular.module('starter.controllers', [])
 
 .controller('CartCtrl', ['$scope', '$rootScope', '$stateParams', 
                     function($scope, $rootScope, $stateParams){
-    $scope.$on('cart-selected', function(event ,data){
-        console.log('   controllers.js      CartCtrl     cart-selected    $rootScope.cartIdList = ');  console.dir($rootScope.cartIdList);
+    $scope.refresh = function(){
         var clist = $rootScope.cartIdList;
-        console.log('   controllers.js      CartCtrl     cart-selected    clist = ');  console.dir(clist);
         var res = new Array();
         for( item in clist){
             var product = $rootScope.idProductMapping[item];
             product['number'] = clist[item];
-            console.log('   controllers.js      CartCtrl     cart-selected    item = ');  console.dir(item);
-            console.log('   controllers.js      CartCtrl     cart-selected    product = ');  console.dir(product);            
             res.push(product);
         }
-        // logComplexeArray(res);
-        console.log('   controllers.js      CartCtrl     cart-selected    res = ');  console.dir(res);
         $scope.cartList = res;
+    }
+    $scope.$on('cart-refresh', function(event, data){
+        $scope.refresh();
+    });
+    $scope.$on('cart-selected', function(event ,data){
+        console.log('   controllers.js      CartCtrl     cart-selected    $rootScope.cartIdList = ');  console.dir($rootScope.cartIdList);
+        $scope.refresh();
     });
 }])
 
