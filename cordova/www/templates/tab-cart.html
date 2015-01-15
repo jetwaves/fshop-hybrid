@@ -35,8 +35,17 @@
         </div>
         <h1 class="title">总额：￥ {{subTotal}}
         </h1>
-        <div class="buttons" ng-click="doSomething()">
-            <a href="#/tab/order_list" ng-if="cartHasProducts"><button class="button">去结算</button></a>
+<!--         <div class="buttons" ng-show="isLoggedIn">
+            <a href="#/tab/order_list" ng-if="cartHasProducts" ng-show="isLoggedIn"><button class="button">去结算</button></a>
+            <a href="#/tab/login" ng-if="cartHasProducts" ng-hide="isLoggedIn"><button class="button">登录后结算</button></a>
+        </div> -->
+
+        <div class="buttons" ng-switch="isLoggedIn">
+            <a class="button" href="#/tab/order_list" ng-if="cartHasProducts" ng-switch-when="true">
+                去结算</a>
+            <a class="button" href="#/tab/login/checkout" ng-if="cartHasProducts" ng-switch-default>
+                登录后结算</a>
         </div>
+
     </ion-footer-bar>
 </ion-view>

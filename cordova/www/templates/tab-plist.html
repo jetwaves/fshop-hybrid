@@ -41,6 +41,9 @@
                 <ion-item>
                     <div on-touch="setFilter(0)">全部分类</div>
                 </ion-item>
+                <ion-item>
+                    <div on-touch="setFilter(0)">当季推荐</div>
+                </ion-item>
                 <ion-item ng-repeat="cat in categories">
                     <div on-touch="setFilter({{cat._id}})">{{cat.name}}</div>
                 </ion-item>

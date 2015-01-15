@@ -78,6 +78,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
+
+    .state('tab.loginPage', {
+        url: '/login',
+        views: {
+            'tab-ucenter': {
+                templateUrl: 'templates/tab-login.html',
+                controller: 'UcenterCtrl'
+            }
+        }
+    })
+
+    .state('tab.loginPageTo', {
+        url: '/login/:to',
+        views: {
+            'tab-ucenter': {
+                templateUrl: 'templates/tab-login.html',
+                controller: 'UcenterCtrl'
+            }
+        }
+    })
+
     .state('tab.checkout', {
         url: '/checkout',
         views: {
@@ -87,6 +108,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
+
+
 
 
     ;

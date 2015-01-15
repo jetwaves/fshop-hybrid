@@ -3,17 +3,17 @@
         <a href="#/tab/plist"><button class="button icon-left ion-chevron-left"> 返回首页</button></a>
         <h1 class="title block">个人中心</h1>
         <div class="buttons" ng-switch="isLoggedIn">
-            <button class="button icon-left ion-log-in" ng-switch-when="true" on-touch="logout()">退出</button>
-            <button class="button icon-left ion-log-out" ng-switch-when="false" on-touch="login()">登录</button>
+            <button class="button icon-left ion-log-out" ng-switch-when="true" on-touch="logout()">退出</button>
+            <button class="button icon-left ion-log-in" ng-switch-when="false" on-touch="login()">登录</button>
         </div>
     </ion-header-bar>
     <ion-content>
         <div class="card" ng-hide="isLoggedIn">
-            <div class="item">
-                <h2>
-                    <i class="icon ion-alert-circled" style="position:relative">请登录后查看个人中心</i>
-                </h2>
-            </div>
+            <a href="#/tab/login" class="item">
+                <h2><i class="icon ion-alert-circled" style="position:relative">
+                        请点这里登录后，查看个人中心
+                </i></h2>
+            </a>
         </div>
         <div class="list card" ng-show="isLoggedIn">
             <a href="#" class="item item-icon-left">
