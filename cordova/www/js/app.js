@@ -115,12 +115,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    .state('tab.submit', {
+        url: '/submit',
+        views: {
+            'tab-ucenter': {
+                templateUrl: 'templates/tab-order-submit.html',
+                controller: 'CheckoutCtrl'
+            }
+        }
+    })
 
+    .state('tab.orderDetail', {
+        url: '/order/:oid',
+        views: {
+            'tab-ucenter': {
+                templateUrl: 'templates/tab-order-detail.html',
+                controller: 'UcenterCtrl'
+            }
+        }
+    })
 
+    .state('tab.orders', {
+        url: '/orders',
+        views: {
+            'tab-ucenter': {
+                templateUrl: 'templates/tab-order-list.html',
+                controller: 'UcenterCtrl'
+            }
+        }
+    })
 
     ;
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/checkout');
+    $urlRouterProvider.otherwise('/tab/ucenter');
 }])
 
 

@@ -1,0 +1,117 @@
+<ion-view view-title="订单详情" ng-controller="CheckoutCtrl" >
+    <ion-header-bar align-title="center" class="bar-balanced">
+        <div class="buttons">
+            <a href="#/tab/ucenter"><button class="button icon-left ion-chevron-left">个人中心</button></a>
+        </div>
+        <h1 class="title">订单详情</h1>
+    </ion-header-bar>
+
+    <ion-content>
+        <div class="card">
+            <i class="item">订单号：1245654564{{order.address}}</i>
+            <i class="item">订单价格：￥ {{subTotal}} 元</i>
+        </div>
+        <div class="card" >
+            <i class="item">商品清单</i>
+            <ion-list>
+                <ion-item class="item-divider item-avatar item-icon-right">
+                    <img ng-src="{{product.pic_url}}">
+                    <div class="row" >
+                        <div class="col col-66">
+                            <h2>新疆阿克苏糖心苹果</h2>  
+                            <span>15kg    100#</span>
+                            <p><label for="">单价：￥</label>520</p>
+                        </div>
+                        <div class="col col-33">
+                            <p><label for="">数量：</label>10</p>
+                            <p><label for="">总价：￥</label>5200</p>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item class="item-divider item-avatar item-icon-right">
+                    <img ng-src="{{product.pic_url}}">
+                    <div class="row" >
+                        <div class="col col-66">
+                            <h2>新西兰佳沛奇异果</h2>  
+                            <span>1件    36#</span>
+                            <p><label for="">单价：￥</label>420</p>
+                        </div>
+                        <div class="col col-33">
+                            <p><label for="">数量：</label>10</p>
+                            <p><label for="">总价：￥</label>4200</p>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item class="item-divider item-avatar item-icon-right">
+                    <img ng-src="{{product.pic_url}}">
+                    <div class="row" >
+                        <div class="col col-66">
+                            <h2>智利车厘子</h2>  
+                            <span>5kg    JJ</span>
+                            <p><label for="">单价：￥</label>520</p>
+                        </div>
+                        <div class="col col-33">
+                            <p><label for="">数量：</label>10</p>
+                            <p><label for="">总价：￥</label>5200</p>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item class="item-divider item-avatar item-icon-right" ng-repeat="product in cartList">
+                    <img ng-src="{{product.pic_url}}">
+                    <div class="row" >
+                        <div class="col col-66">
+                            <h2>{{product.product_name}}</h2>  
+                            <span>{{product.spec}} {{product.unit_quantity}}</span>
+                            <p><label for="">单价：￥</label>{{product.price}}</p>
+                        </div>
+                        <div class="col col-33">
+                            <p><label for="">数量：</label>{{product.number}}</p>
+                            <p><label for="">总价：￥</label>{{totalPrice=product.price * product.number;totalPrice}}</p>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="card">
+            <i class="item">收货地址</i>
+            <ion-list class="item">
+                <ion-item>
+                    巨好吃果园
+                </ion-item>
+                <ion-item>
+                    ***店长
+                </ion-item>
+                <ion-item>
+                    广东省深圳市南山区花果山路
+                </ion-item>
+                <ion-item>
+                    18888888888
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="card">
+            <i class="item">配送和支付</i>
+            <ion-list class="item">
+                <ion-item>
+                    配送时间：<span>2015年01月20日 07:30</span>
+                </ion-item>
+                <ion-item>
+                    配送方式：<span>自有物流配送/ 自提</span>
+                </ion-item>
+                <ion-item>
+                    支付方式：<span>现金支付/ 月结</span>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="card">
+            <i class="item">订单状态</i>
+            <div class="item item-text-wrap">
+                <p>订单号：111111111</p>
+                <p>收货人：发老板</p>
+                <p>店铺名：发果山</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
