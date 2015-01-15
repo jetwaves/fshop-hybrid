@@ -1,7 +1,7 @@
 <ion-view view-title="购物车" ng-controller="CheckoutCtrl" >
     <ion-header-bar align-title="center" class="bar-balanced">
         <div class="buttons">
-            <a href="#/tab/cart"><button class="button">购物车</button></a>
+            <a href="#/tab/cart"><button class="button icon-left ion-chevron-left">购物车</button></a>
         </div>
         <h1 class="title">结算</h1>
     </ion-header-bar>
@@ -61,12 +61,12 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-positive">
         <div class="buttons">
-            <a href="#/tab/cart"><button class="button">购物车</button></a>
+            <a href="#/tab/cart"><button class="button icon-left ion-chevron-left">购物车</button></a>
         </div>
         <h1 class="title">总额：￥ {{subTotal}}
         </h1>
         <div class="buttons" ng-click="doSomething()">
-            <button class="button">提交订单</button>
+            <button class="button button-assertive">提交订单</button>
         </div>
     </ion-footer-bar>
 </ion-view>

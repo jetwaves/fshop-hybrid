@@ -4,7 +4,7 @@
         <ion-side-menu-content ng-controller="PlistCtrl">
             <ion-header-bar class="bar-positive" align-title="center">
                 <div class="buttons">
-                    <button class="button" menu-toggle="left">分类筛选</button>
+                    <button class="button icon-left ion-navicon-round" menu-toggle="left">分类筛选</button>
                 </div>
                 <h1 class="title">商品列表</h1>
             </ion-header-bar>
@@ -47,7 +47,9 @@
                 <ion-item ng-repeat="cat in categories">
                     <div on-touch="setFilter({{cat._id}})">{{cat.name}}</div>
                 </ion-item>
+                <div on-touch="toggleLeft()" class="button button-balanced button-block">关闭筛选</div>
             </ion-list>
+
         </ion-side-menu>
 
     </ion-side-menus>

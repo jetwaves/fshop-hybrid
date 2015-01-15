@@ -200,8 +200,6 @@ angular.module('starter.controllers', [])
             $scope.clientInfo = Clients.info(clientId);
         };
     }
-
-
     $scope.loadClientInfo('user_name');
 }])
 

@@ -35,6 +35,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $ionicConfigProvider.setPlatformConfig('ios', iosConfig);
 
     $stateProvider
+
+    .state('splash', {
+        url: "/",
+        templateUrl: "templates/splash.html",
+        controller:'PlistCtrl'
+    })
     // setup an abstract state for the tabs directive
     .state('tab', {
         url: "/tab",
