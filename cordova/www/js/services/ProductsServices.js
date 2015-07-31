@@ -1,8 +1,7 @@
 var DEBUG_MODE = true;
-var remoteServerURL = "http://192.168.1.212:3000";
+var remoteServerURL = 'http://aaaaaaa.com';
 
-angular.module('fshop.services', [])
-
+angular.module('fshop.services')
 .factory('Products', ['$http', function($http){
     // 测试数据
     var products = [{
@@ -82,6 +81,8 @@ angular.module('fshop.services', [])
 
     return {
         all: function() {
+            var DEBUG_MODE = true;
+            var remoteServerURL = 'http://aaaaaaa.com';
             if (DEBUG_MODE) {
                 // console.log(' services.js   Products.all()      DEBUG_MODE = true');
                 return products;
@@ -110,91 +111,4 @@ angular.module('fshop.services', [])
             return null;
         }
     }
-}])
-
-.factory('Clients', ['$http', function($http){
-    var clientInfo = {
-                        _id: "54af8e05e3d9c7d823581c4f",
-                        user_name: "18676780441",
-                        shop_name: "花果山水果店",
-                        owner: "大强哥",
-                        tel: "18676780441",
-                        email: "qq@qq.com",
-                        wechat: "wechatQQ",
-                        address: "广东省深圳市南山区花果山路888号",
-                        status: "1",
-                        sup_info: "",
-                        password: "aaaaaa",
-                        bonus: "999",
-                        account_manager: "杜黄平",
-                        am_tel: "13131313131"
-                    };
-    return {
-        info: function(clientId) {
-            if (DEBUG_MODE) {
-                return clientInfo;
-            } else {
-                $http.get(remoteServerURL + '/clients/info/' + clientId).
-                success(function(data, status, headers, config) {
-                    // return data[data];
-                    console.log(' services.js   Clients.info()      http success: data');
-                    console.dir(data);
-                    return data;
-                }).
-                error(function(data, status, headers, config) {
-                    console.log(' services.js   Clients.info()      http error');
-                });
-            }
-        }
-    }
-}])
-
-
-.factory('Categories', ['$http', function($http){
-    var catList = [ {
-                        _id     :   "1",
-                        name    :   "苹果",
-                        on_sale :   "1"
-                    },{
-                        _id     :   "2",
-                        name    :   "梨",
-                        on_sale :   "1"
-                    },{
-                        _id     :   "3",
-                        name    :   "柑橘",
-                        on_sale :   "1"
-                    },{
-                        _id     :   "4",
-                        name    :   "西瓜",
-                        on_sale :   "1"
-                    },{
-                        _id     :   "5",
-                        name    :   "草莓",
-                        on_sale :   "1"
-                    },{
-                        _id     :   "666666",
-                        name    :   "火龙果",
-                        on_sale :   "1"
-                    }];
-    return {
-        all     :   function(){
-            if (DEBUG_MODE) {
-                return catList;
-            } else {
-                $http.get(remoteServerURL + '/categories/listData/').
-                success(function(data, status, headers, config) {
-                    // return data[data];
-                    console.log(' services.js   Categories.all()      http success: data');
-                    console.dir(data);
-                    return data;
-                }).
-                error(function(data, status, headers, config) {
-                    console.log(' services.js   Categories.all()      http error');
-                });
-            }
-        }
-    };
-}])
-
-
-;
+}]);
